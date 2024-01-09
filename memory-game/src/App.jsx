@@ -4,18 +4,18 @@ import usePokemons from './PokemonFunctions'
 import './App.css'
 
 function App() {
-  const {pokemons, setPokemons, getRandomPokemon} = usePokemons()
+  const {pokemons, setPokemons, getRandomPokemon, shufflePokemons} = usePokemons()
   const [gameStatus, setGameStatus] = useState("end")
 
   const initializePokemons = async () =>{
     const randomPokemons = getRandomPokemon(5)
-    setPokemons(initializePokemons)
-    console.log(pokemons)
+    setPokemons(await randomPokemons)
   }
+
   return (
     <>
-      <button onClick = {initializePokemons}>Click Me!</button>
-      <Main cards = {pokemons}/>
+      <button onClick = {initializePokemons}>Start</button>
+      <Main cards = {pokemons} handleClick={shufflePokemons}/>
     </>
   )
 }

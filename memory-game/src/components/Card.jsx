@@ -1,10 +1,13 @@
 import React from "react";
-const Card = ({card}) => {
+// import "../styles/Card.css"
+const Card = ({card, handleClick}) => {
 
     return (
         <div className = "card-front">
-            <img src = {card.image}></img>
-            <div>{card.name}</div>
+            <button className = "card" onClick = {handleClick}>
+                <img src = {card.image}></img>
+                <div>{card.name}</div>
+            </button>
         </div>
     )
 };

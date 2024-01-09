@@ -1,11 +1,11 @@
 import Card from "./Card"
-function Main({cards}){
-    return (
+const Main = ({cards, handleClick}) => {
+    return(
         <div className = "cards">
             {cards.map((card)=>{
-                <Card card={card}/>
+                return <Card card={card} handleClick={handleClick}/>
             })}
         </div>
     )
 }
-export default Main;
+export default Main
