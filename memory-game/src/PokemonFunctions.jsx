@@ -1,7 +1,7 @@
 import { useState } from "react";
 import uniqid from "uniqid" 
 const usePokemons = ()=>{
-    const [pokemons, setPokemons] = useState(['garydos'])
+    const [pokemons, setPokemons] = useState([])
     const getPokemon = async (id) => {
         const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
         const {name, sprites} = await response.json();
@@ -23,7 +23,7 @@ const usePokemons = ()=>{
         const availableCards = [...pokemons]
         const shuffledPokemons = []
         while (availableCards.length){
-            const index = Math.floor(Math.random() * availableCards.length);
+            const index = Math.floor(Math.random() * availableCards.length); // Choose a random card for that index
             const card = availableCards[index]
             card.id = uniqid() // to trigger a re-render
             shuffledPokemons.push(card)

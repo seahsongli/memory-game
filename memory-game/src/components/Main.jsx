@@ -1,9 +1,11 @@
 import Card from "./Card"
 const Main = ({cards, handleClick}) => {
-    return(
+    // console.log(cards)
+    return (
         <div className = "cards">
-            {cards.map((card)=>{
-                return <Card card={card} handleClick={handleClick}/>
+            {cards.map((card, index)=>{
+                // console.log(card.id)
+                return <Card key={card.id} card={card} onClick = {()=> handleClick(index)}/>
             })}
         </div>
     )
