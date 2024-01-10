@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import Main from './components/Main'
 import usePokemons from './PokemonFunctions'
+import Score from './components/Score'
+import GameOver from './components/GameOver'
 import './App.css'
 
 function App() {
@@ -31,25 +33,40 @@ function App() {
     console.log("Card not clicked!")
     
     updateCardsClicked(cardIndex) 
-    setCurrentScore(currentScore+1)
+    incrementScore()
     const everyCardClicked = pokemons.every((card)=>card.isClicked)
     if (!everyCardClicked){
       shufflePokemons()
       return;
     }
-    const win = currentScore == pokemons.length
+    const win = currentScore === pokemons.length
     if (win){
       setGameStatus("win")
     }
     else{
-      handleLevelUp()
+      handleLevelUp() // not done yet
     }
   }
+  const onPlayAgain = ()=>{
+    setGameStatus("game")
+    setCurrentScore(0)
+    initializePokemons(5)
+  }
 
+  const onQuit = ()=>{
+    setGameStatus("start")
+    setCurrentScore(0)
+  }
   return (
     <>
       <button onClick = {initializePokemons}>Start</button>
-      <Main cards = {pokemons} handleClick={handleCardClick}/>
+      <>
+        {(gameStatus==="win" || gameStatus==="lose")&& 
+          (<GameOver gameStatus={gameStatus} score={currentScore} onPlayAgain={onPlayAgain} onQuit={onQuit}/>)}
+      
+        <Score bestScore={bestScore} currentScore={currentScore}/>
+        <Main cards = {pokemons} handleClick={handleCardClick}/>
+      </>
     </>
   )
 }
