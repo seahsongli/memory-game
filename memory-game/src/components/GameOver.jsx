@@ -21,9 +21,9 @@ const GameOver = ({gameStatus, score, onPlayAgain, onQuit})=>{
           </div>
 
           <div className = "options">
-            {gameStatus === "win" && (
+            {/* {gameStatus === "win" && (
                 <OptionButton onClick={onContinue}>Keep playing</OptionButton>
-            )}
+            )} */}
             <OptionButton onClick={onPlayAgain}>Play again</OptionButton>
             <OptionButton onClick={onQuit}>Quit</OptionButton>
           </div>

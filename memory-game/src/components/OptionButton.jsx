@@ -1,6 +1,6 @@
-const OptionButton = ({onClick,children})=>{
+const OptionButton = ({onClick,children, type = "button"})=>{
     return(
-    <button onClick = {onClick}>
+    <button onClick = {onClick} type={type} className ="option-button">
         {children}
     </button>)
 }

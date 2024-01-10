@@ -3,6 +3,8 @@ import Main from './components/Main'
 import usePokemons from './PokemonFunctions'
 import Score from './components/Score'
 import GameOver from './components/GameOver'
+import LoadingScreen from './components/LoadingScreen'
+import StartScreen from './components/StartScreen'
 import './App.css'
 
 function App() {
@@ -10,6 +12,8 @@ function App() {
   const [gameStatus, setGameStatus] = useState("start")
   const [currentScore, setCurrentScore] = useState(0)
   const [bestScore, setBestScore] = useState(localStorage.getItem("best-score") || 0)
+  const [loading,setLoading] = useState(false)
+
   const initializePokemons = async () =>{
     const randomPokemons = getRandomPokemon(5)
     setPokemons(await randomPokemons)
@@ -22,6 +26,14 @@ function App() {
 
     localStorage.setItem("best-score", newBestScore) // So that we can keep track even after re-render
   }
+  const handleLevelUp = () => {
+    const randomPokemons=getRandomPokemon(5);
+    setLoading(true)
+    setTimeout(async ()=>{
+      setPokemons(await randomPokemons)
+      setLoading(false)
+    }, 800)
+  }
   const updateCardsClicked = (index) =>{
     const newCards = [...pokemons] // Every index is an object.
     newCards[index].isClicked = true
@@ -30,7 +42,6 @@ function App() {
   const handleCardClick = async (cardIndex) =>{
     const card = pokemons[cardIndex]
     if (card.isClicked) return setGameStatus("lose") // to indicate user has lost
-    console.log("Card not clicked!")
     
     updateCardsClicked(cardIndex) 
     incrementScore()
@@ -39,12 +50,12 @@ function App() {
       shufflePokemons()
       return;
     }
-    const win = currentScore === pokemons.length
+    const win = (currentScore === pokemons.length)
     if (win){
       setGameStatus("win")
     }
     else{
-      handleLevelUp() // not done yet
+      handleLevelUp()
     }
   }
   const onPlayAgain = ()=>{
@@ -58,16 +69,26 @@ function App() {
     setCurrentScore(0)
   }
   return (
-    <>
-      <button onClick = {initializePokemons}>Start</button>
+    <div className="App">
+     {loading ? (
+      <LoadingScreen/>
+     ) : gameStatus ==="start" ? (
+      <StartScreen
+        onStart = {()=>{
+          setGameStatus("game");
+          initializePokemons(5)
+        }}/>
+     ) : (
       <>
         {(gameStatus==="win" || gameStatus==="lose")&& 
           (<GameOver gameStatus={gameStatus} score={currentScore} onPlayAgain={onPlayAgain} onQuit={onQuit}/>)}
       
         <Score bestScore={bestScore} currentScore={currentScore}/>
-        <Main cards = {pokemons} handleClick={handleCardClick}/>
+        <Main cards = {pokemons} handleClick={handleCardClick} score={currentScore+1}/>
       </>
-    </>
+     )
+    }
+    </div>
   )
 }
 

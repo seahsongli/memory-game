@@ -10,6 +10,17 @@
     border:0;
 }
 
+.card:focus{
+    outline: 0;
+}
+
+.card:focus-visible{
+    outline: 1px solid black;
+}
+.card:active {
+    scale:0.95;
+    outline: 0;
+}
 .card-front {
     position:absolute
 }
