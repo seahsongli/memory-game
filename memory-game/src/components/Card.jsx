@@ -9,10 +9,6 @@ const Card = ({card, onClick}) => {
                     <div>{card.name}</div>
                 </button>
             </div>
-
-            {/* <div className = "card-back">
-                <img src = {`${process.env.PUBLIC_URL/card-back.jpg}`} className = "back"></img>
-            </div> */}
         </div>
     )
 };
