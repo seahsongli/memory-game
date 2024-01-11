@@ -1,0 +1,7 @@
+.stats{
+    display:flex;
+    justify-content: center;
+    flex-wrap:wrap;
+    gap:20px;
+    vertical-align: text-top;
+}

@@ -1,6 +1,6 @@
 import Card from "./Card"
+import "../styles/Main.css"
 const Main = ({cards, handleClick, score}) => {
-    // console.log(cards)
     return (
         <div className = "main">
             <p className="score-progress">
@@ -10,7 +10,6 @@ const Main = ({cards, handleClick, score}) => {
             </p>
             <div className = "cards">
                 {cards.map((card, index)=>{
-                    // console.log(card.id)
                     return <Card key={card.id} card={card} onClick = {()=> handleClick(index)}/>
                 })}
             </div>

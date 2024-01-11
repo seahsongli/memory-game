@@ -1,5 +1,5 @@
 import React from "react";
-// import "../styles/Card.css"
+import "../styles/Card.css"
 const Card = ({card, onClick}) => {
     return (
         <div className = "card-inner">
@@ -10,9 +10,9 @@ const Card = ({card, onClick}) => {
                 </button>
             </div>
 
-            <div className = "card-back">
-                <img src = {`${process.env.PUBLIC_URL/card-back.png}`} className = "back"></img>
-            </div>
+            {/* <div className = "card-back">
+                <img src = {`${process.env.PUBLIC_URL/card-back.jpg}`} className = "back"></img>
+            </div> */}
         </div>
     )
 };

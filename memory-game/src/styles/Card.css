@@ -8,19 +8,91 @@
     border-radius:5px;
     background-color: rgba(0,0,0,0.2);
     border:0;
+
+}
+button {
+    /* cursor: pointer;
+    border-radius: 8px;
+    border: 1px solid black;
+    padding: 0.6em 1.2em;
+    
+    font-family: inherit;
+    background-color: #1a1a1a;
+    transition: border-color 0.25s;  */
+    transition-duration: 0.4s;
+    font-size: 1em;
+    font-weight: 500;
+    cursor:pointer;
+}
+button:hover {
+    border: 1px solid black;
+    background-color: rgba(0,0,0,0.4);
+}
+button:focus,
+button:focus-visible {
+outline: 4px auto -webkit-focus-ring-color;
 }
 
 .card:focus{
     outline: 0;
 }
 
-.card:focus-visible{
+/* .card:focus-visible{
     outline: 1px solid black;
-}
+} */
 .card:active {
     scale:0.95;
     outline: 0;
 }
-.card-front {
-    position:absolute
+.card-container {
+    perspective:1000px
+}
+
+.card-container.back .card-inner {
+    transform:rotateY(180deg);
+}
+.card-inner{
+    position:relative;
+    text-align:center;
+    transform-style:preserve-3d;
+    /* transition: transform 0.85s;
+    animation:flip-card 0.85s; */
+    /* transform:rotateY(360deg) 0.85s; */
+}
+
+
+/* .card-front,
+.card-back {
+    position:absolute;
+    backface-visibility: hidden;
+} */
+
+.card-image {
+    width:100%;
+    height:200px;
+    object-fit:contain;
+    user-select:none;
+}
+
+.card-name {
+    letter-spacing:0.02em;
+    text-overflow:ellipsis;
+    overflow:hidden;
+    white-space:nowrap;
+    padding:8px 6px;
+    font-weight:bold;
+    max-width:100%;
+    text-transform:capitalize;
+    color:white;
+    font-size:15px
+
+}
+@keyframes flip-card {
+    from{
+        transform:rotateY(180deg);
+        pointer-events:none
+    }
+    to {
+        transform:rotateY(0deg);
+    }
 }

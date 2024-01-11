@@ -1,0 +1,67 @@
+.start-screen-modal-content{
+    display:flex;
+    flex-direction: column;
+    padding:20px;
+    animation:appear 0.9s;
+    gap:20px;
+    min-height: 100%;
+
+}
+
+.start-screen-modal{
+    gap:10px;
+    display:flex;
+    flex-direction: column ;
+}
+.ask-text{
+    overflow:hidden;
+    border-right:0.1em solid black;
+    margin:5px;
+    letter-spacing: -0.05em;
+    animation:typing 0.9s steps(60,end), typewriter 0.75s step-end infinite;
+    text-align:center;
+}
+
+.start-options {
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-self: center;
+}
+
+#start-button{
+    border-radius: 30px;
+    height:50px;
+    width:200px;
+    border-color:1px solid black;
+}
+
+@keyframes typing {
+    from {
+        white-space:nowrap;
+        width:0;
+    }
+    to {
+        white-space:nowrap;
+        width:100%
+    }
+}
+
+@keyframes typewrite {
+    from,
+    to{
+        border-color:transparent
+    }
+    50% {
+        border-color: black;
+    }
+}
+
+@keyframes appear {
+    0% {
+        visibility:hidden;
+    }
+    100% {
+        visibility:hidden;
+    }
+}

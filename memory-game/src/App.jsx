@@ -62,11 +62,13 @@ function App() {
     setGameStatus("game")
     setCurrentScore(0)
     initializePokemons(5)
+    setPokemons([])
   }
 
   const onQuit = ()=>{
     setGameStatus("start")
     setCurrentScore(0)
+    setPokemons([])
   }
   return (
     <div className="App">
@@ -84,8 +86,8 @@ function App() {
           (<GameOver gameStatus={gameStatus} score={currentScore} onPlayAgain={onPlayAgain} onQuit={onQuit}/>)}
       
         <Score bestScore={bestScore} currentScore={currentScore}/>
-        <Main cards = {pokemons} handleClick={handleCardClick} score={currentScore+1}/>
-      </>
+        {(gameStatus =="game") && <Main cards = {pokemons} handleClick={handleCardClick} score={currentScore+1}/>
+}</>
      )
     }
     </div>

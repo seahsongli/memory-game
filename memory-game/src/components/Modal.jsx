@@ -1,4 +1,5 @@
+import "../styles/Modal.css"
 const Modal = ({children})=>{
-    return <div clsasName="modal">{children}</div>
+    return <div className="modal">{children}</div>
 }
 export default Modal
