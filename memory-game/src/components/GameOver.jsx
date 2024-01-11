@@ -9,7 +9,7 @@ const GameOver = ({gameStatus, score, onPlayAgain, onQuit})=>{
             <img
             src={
               gameStatus === "win"
-                ?  require("https://giphy.com/embed/td02jbtsXIxpBv45rJ") 
+                ?  EndGame 
                 : EndGame
             }
             className="status-gif"

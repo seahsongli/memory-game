@@ -1,3 +1,4 @@
+import "../styles/LoadingScreen.css"
 const LoadingScreen = ()=>{
     return(
         <div className ="pokemon-loading-screen">
